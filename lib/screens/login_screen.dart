@@ -6,6 +6,8 @@ import '../utils/app_widget_size.dart';
 import '../widgets/acml_text_field.dart';
 import '../widgets/custom_text_widget.dart';
 import '../widgets/gradient_button_widget.dart';
+import 'demo_screen.dart';
+import 'watchlist_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? userName;
@@ -90,7 +92,11 @@ class LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.only(right: 20.w, top: 8.h, bottom: 8.h),
       child: GestureDetector(
         onTap: () {
-          // Try Demo action - no implementation
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const DemoScreen(initialIndex: 0),
+            ),
+          );
         },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),

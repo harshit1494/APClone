@@ -243,6 +243,9 @@ class MyApp extends StatelessWidget {
         color: Color(0xFFF1F1F6),
         elevation: 0.0,
       ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: Color(0xFFE1F4E5),
+      ),
       shadowColor: Colors.transparent,
     );
   }
@@ -434,6 +437,9 @@ class MyApp extends StatelessWidget {
       appBarTheme: const AppBarTheme(
         color: Color(0xFF181D20),
         elevation: 0.0,
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: Color(0xFF142D1A),
       ),
       shadowColor: darkAppBackgroundColorSecondary,
     );
