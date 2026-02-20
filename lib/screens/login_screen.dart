@@ -516,9 +516,20 @@ class LoginScreenState extends State<LoginScreen> {
               onTap: () {
                 // Need help - no implementation
               },
-              child: CustomTextWidget(
-                'Need Help?',
-                Theme.of(context).primaryTextTheme.headlineSmall!,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CustomTextWidget(
+                    'Need Help',
+                    Theme.of(context).primaryTextTheme.headlineSmall!,
+                  ),
+                  Text(
+                    '?',
+                    style: Theme.of(context).primaryTextTheme.headlineSmall!.copyWith(
+                          fontFamily: 'Arial',
+                        ),
+                  ),
+                ],
               ),
             ),
           ),

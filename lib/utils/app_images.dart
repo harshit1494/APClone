@@ -809,5 +809,41 @@ class AppImages {
   static AssetImage feedbackStar() {
     return const AssetImage('assets/images/feedback_star.png');
   }
+
+  static AssetImage pledge2x() {
+    return const AssetImage('assets/images/pledge_2x.png');
+  }
+
+  static Widget APIc(
+    BuildContext context, {
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/stories-ic.svg',
+      width: width ?? 20,
+      height: height ?? 20,
+    );
+  }
+
+  static AssetImage researchBackgroundImg() {
+    return const AssetImage('assets/images/research_background.png');
+  }
+
+  static AssetImage researchBannerImg() {
+    return const AssetImage('assets/images/research_banner.png');
+  }
+
+  static AssetImage researchInfo1() {
+    return const AssetImage('assets/images/researchInfo1.png');
+  }
+
+  static AssetImage researchInfo2() {
+    return const AssetImage('assets/images/researchInfo2.png');
+  }
+
+  static AssetImage researchInfo3() {
+    return const AssetImage('assets/images/researchInfo3.png');
+  }
 }
 

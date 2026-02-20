@@ -8,6 +8,7 @@ import '../widgets/rupee_symbol_widget.dart';
 import '../widgets/label_border_text_widget.dart';
 import '../widgets/circular_button_toggle_widget.dart';
 import '../widgets/gradient_button_widget.dart';
+import 'research_reinvented_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -179,7 +180,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Research icon
                 GestureDetector(
                   onTap: () {
-                    // Handle research tap
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const ResearchReinventedScreen(),
+                      ),
+                    );
                   },
                   child: AppImages.researchLogo(
                     context,

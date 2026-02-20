@@ -9,6 +9,7 @@ import '../models/symbols_model.dart';
 import 'watchlist_list_widget.dart';
 import 'markets_screen.dart';
 import 'scanners_screen.dart';
+import 'research_reinvented_screen.dart';
 import '../utils/app_images.dart';
 
 class WatchlistScreen extends StatefulWidget {
@@ -218,7 +219,11 @@ class _WatchlistScreenState extends State<WatchlistScreen>
                 // Research icon
                 GestureDetector(
                   onTap: () {
-                    // Navigate to research screen
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const ResearchReinventedScreen(),
+                      ),
+                    );
                   },
                   child: AppImages.researchLogo(
                     context,

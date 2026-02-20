@@ -8,6 +8,7 @@ import '../widgets/toggle_circular_tabs_widget.dart';
 import 'orders_main_screen.dart';
 import 'positions_screen.dart';
 import 'holdings_screen.dart';
+import 'research_reinvented_screen.dart';
 
 class TradesScreen extends StatefulWidget {
   const TradesScreen({Key? key}) : super(key: key);
@@ -131,7 +132,11 @@ class _TradesScreenState extends State<TradesScreen>
   Widget _buildResearchIcon() {
     return GestureDetector(
       onTap: () {
-        // Handle research icon tap
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const ResearchReinventedScreen(),
+          ),
+        );
       },
       child: AppImages.researchLogo(
         context,

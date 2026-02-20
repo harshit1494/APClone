@@ -6,6 +6,7 @@ import '../utils/app_images.dart';
 import '../widgets/custom_text_widget.dart';
 import '../widgets/gradient_button_widget.dart';
 import '../widgets/toggle_circular_tabs_widget.dart';
+import 'research_reinvented_screen.dart';
 
 class FundsScreen extends StatefulWidget {
   const FundsScreen({Key? key}) : super(key: key);
@@ -82,7 +83,11 @@ class _FundsScreenState extends State<FundsScreen>
                     // Research icon
                     GestureDetector(
                       onTap: () {
-                        // Handle research tap
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const ResearchReinventedScreen(),
+                          ),
+                        );
                       },
                       child: AppImages.researchLogo(
                         context,
