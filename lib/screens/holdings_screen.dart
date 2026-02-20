@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/app_widget_size.dart';
-import '../widgets/custom_text_widget.dart';
+import 'orders_main_screen.dart';
 
 class HoldingsScreen extends StatefulWidget {
   const HoldingsScreen({Key? key}) : super(key: key);
@@ -13,15 +11,6 @@ class HoldingsScreen extends StatefulWidget {
 class _HoldingsScreenState extends State<HoldingsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: Center(
-        child: CustomTextWidget(
-          'Holdings',
-          Theme.of(context).textTheme.displayMedium!,
-        ),
-      ),
-    );
+    return const OrdersMainScreen();
   }
 }
-

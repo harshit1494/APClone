@@ -27,6 +27,30 @@ class AppImages {
     );
   }
 
+  static Widget apNameLogoLight(
+    BuildContext context, {
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/ap_name_logo_light.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget apNameLogoDark(
+    BuildContext context, {
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/ap_name_logo_dark.svg',
+      width: width,
+      height: height,
+    );
+  }
+
   static Widget googleLogo(
     BuildContext context, {
     double? width,
@@ -504,6 +528,286 @@ class AppImages {
       color: color ?? Theme.of(context).primaryIconTheme.color,
       size: width ?? 24,
     );
+  }
+
+  // Product Icons
+  static Widget productCash(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_cash.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productFO(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_fno.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productETF(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_etf.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productCommodity(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_commodity.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productCurrency(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_currency.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productIpo(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_ipo.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productNCD(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_ncd.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget productMFOverview(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/product_mfOverview.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget heartIcon(
+    BuildContext context, {
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/heart.svg',
+      width: width,
+      height: height,
+      color: color,
+    );
+  }
+
+  static AssetImage goldEtf() {
+    return const AssetImage('assets/images/gold_etf.png');
+  }
+
+  static AssetImage silverEtf() {
+    return const AssetImage('assets/images/silver_etf.png');
+  }
+
+  static AssetImage indexEtf() {
+    return const AssetImage('assets/images/index_etf.png');
+  }
+
+  static AssetImage debtEtf() {
+    return const AssetImage('assets/images/debt_etf.png');
+  }
+
+  static AssetImage globalEtf() {
+    return const AssetImage('assets/images/global_etf.png');
+  }
+
+  static AssetImage othersEtf() {
+    return const AssetImage('assets/images/others_etf.png');
+  }
+
+  static AssetImage fundsCoin() {
+    return const AssetImage('assets/images/funds_coin.png');
+  }
+
+  static Widget funddetails(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/fund_details.svg'
+          : 'assets/images/fund_details_dark.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget fundhistory(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/fund_history.svg'
+          : 'assets/images/fund_history_dark.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget pledgeCoinImage(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight ? 'assets/images/pledge_coin.svg' : 'assets/images/pledge_coin_dark.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget ipo(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight ? 'assets/images/ipo.svg' : 'assets/images/ipo_dark.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static Widget smeTag(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/sme.svg',
+      width: width,
+      height: height,
+    );
+  }
+
+  static AssetImage candleChartImg() {
+    return const AssetImage('assets/images/candle_chart_bg.png');
+  }
+
+  static AssetImage discoverSip() {
+    return const AssetImage('assets/images/discover_sip.png');
+  }
+
+  static AssetImage discoverScanners() {
+    return const AssetImage('assets/images/discover_scanner.png');
+  }
+
+  static AssetImage discoverNcd() {
+    return const AssetImage('assets/images/discover_ncd.png');
+  }
+
+  static AssetImage discoverfiidii() {
+    return const AssetImage('assets/images/discover_fiidii.png');
+  }
+
+  static AssetImage discoverSupport() {
+    return const AssetImage('assets/images/discover_support.png');
+  }
+
+  static AssetImage discoverGtd() {
+    return const AssetImage('assets/images/discover_gtd.png');
+  }
+
+  static AssetImage discoverResearch() {
+    return const AssetImage('assets/images/discover_research.png');
+  }
+
+  static AssetImage discoverBasket() {
+    return const AssetImage('assets/images/discover_basket.png');
+  }
+
+  static AssetImage discoverReports() {
+    return const AssetImage('assets/images/discover_reports.png');
+  }
+
+  static AssetImage referAndEarnBannerImg() {
+    return const AssetImage('assets/images/refer_earn_banner_img.png');
+  }
+
+  static AssetImage cmsSip() {
+    return const AssetImage('assets/images/cms_sip.png');
+  }
+
+  static AssetImage manageDash() {
+    return const AssetImage('assets/images/manage_dash.png');
+  }
+
+  static AssetImage feedbackBannerImg() {
+    return const AssetImage('assets/images/feedback_banner.png');
+  }
+
+  static AssetImage feedbackStar() {
+    return const AssetImage('assets/images/feedback_star.png');
   }
 }
 

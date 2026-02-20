@@ -267,10 +267,17 @@ class OrderRowWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       children: [
-        getRupeeSymbol(
-          context,
-          rupeeStyle,
+        // Rupee symbol with Arial font (web-safe and supports rupee)
+        Text(
+          '₹',
+          style: TextStyle(
+            fontSize: rupeeStyle.fontSize,
+            fontWeight: rupeeStyle.fontWeight,
+            color: rupeeStyle.color,
+            fontFamily: 'Arial', // Arial supports rupee symbol on web
+          ),
         ),
+        SizedBox(width: 2.w),
         CustomTextWidget(
           value,
           textStyle,

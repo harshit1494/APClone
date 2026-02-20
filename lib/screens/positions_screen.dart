@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../utils/app_widget_size.dart';
-import '../widgets/custom_text_widget.dart';
+import 'orders_main_screen.dart';
 
 class PositionsScreen extends StatefulWidget {
   const PositionsScreen({Key? key}) : super(key: key);
@@ -13,15 +11,6 @@ class PositionsScreen extends StatefulWidget {
 class _PositionsScreenState extends State<PositionsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: Center(
-        child: CustomTextWidget(
-          'Positions',
-          Theme.of(context).textTheme.displayMedium!,
-        ),
-      ),
-    );
+    return const OrdersMainScreen();
   }
 }
-

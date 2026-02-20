@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/app_widget_size.dart';
 import '../utils/app_color.dart';
 import '../utils/app_images.dart';
+import '../utils/app_utils.dart';
 import '../widgets/custom_text_widget.dart';
 import '../widgets/label_border_text_widget.dart';
 import '../widgets/circular_button_toggle_widget.dart';
@@ -183,15 +184,23 @@ class _OrdersScreenState extends State<OrdersScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _buildTradeHistory(context),
-            if (_hasPendingOrders()) _buildCancelAll(context),
-          ],
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const ClampingScrollPhysics(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildTradeHistory(context),
+                if (_hasPendingOrders()) _buildCancelAll(context),
+              ],
+            ),
+          ),
         ),
         IntrinsicHeight(
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
                 onTap: () {
@@ -201,6 +210,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   context,
                   width: AppWidgetSize.dimen_30,
                   height: AppWidgetSize.dimen_30,
+                  color: Theme.of(context).primaryIconTheme.color,
+                  isColor: true,
                 ),
               ),
               _buildFilter(context),
@@ -213,70 +224,91 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Widget _buildTradeHistory(BuildContext context) {
-    return _buildLabelBorderWidget(
-      context,
-      'Trade History',
-      AppImages.tradeHistory(
-        context,
-        width: AppWidgetSize.dimen_15,
-        height: AppWidgetSize.dimen_15,
+    return Container(
+      padding: EdgeInsets.only(bottom: AppWidgetSize.dimen_5),
+      margin: EdgeInsets.only(right: AppWidgetSize.dimen_5),
+      child: LabelBorderWidget(
+        text: 'Trade History',
+        textColor: Theme.of(context).primaryColor,
+        fontSize: AppWidgetSize.fontSize14,
+        borderRadius: AppWidgetSize.dimen_24,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        borderWidth: 1,
+        borderColor: Theme.of(context).dividerColor,
+        padding: EdgeInsets.symmetric(
+          horizontal: AppWidgetSize.dimen_6,
+          vertical: AppWidgetSize.dimen_5,
+        ),
+        onTap: () {
+          // Handle trade history tap
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AppImages.tradeHistory(
+              context,
+              width: AppWidgetSize.dimen_12,
+              height: AppWidgetSize.dimen_12,
+            ),
+            SizedBox(width: AppWidgetSize.dimen_3),
+            CustomTextWidget(
+              'Trade History',
+              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: AppWidgetSize.fontSize12,
+                  ) ?? TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: AppWidgetSize.fontSize12,
+                  ),
+            ),
+          ],
+        ),
       ),
-      () {
-        // Handle trade history tap
-      },
     );
   }
 
   Widget _buildCancelAll(BuildContext context) {
-    return _buildLabelBorderWidget(
-      context,
-      'Cancel Orders',
-      AppImages.closeCross(
-        context,
-        width: AppWidgetSize.dimen_15,
-        height: AppWidgetSize.dimen_15,
-        color: Theme.of(context).primaryColor,
-      ),
-      () {
-        // Handle cancel all tap
-      },
-    );
-  }
-
-  Widget _buildLabelBorderWidget(
-    BuildContext context,
-    String text,
-    Widget icon,
-    VoidCallback onTap,
-  ) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
+    return Container(
+      padding: EdgeInsets.only(bottom: AppWidgetSize.dimen_5),
+      margin: EdgeInsets.only(right: AppWidgetSize.dimen_5),
+      child: LabelBorderWidget(
+        text: 'Cancel Orders',
+        textColor: Theme.of(context).primaryColor,
+        fontSize: AppWidgetSize.fontSize14,
+        borderRadius: AppWidgetSize.dimen_24,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        borderWidth: 1,
+        borderColor: Theme.of(context).dividerColor,
         padding: EdgeInsets.symmetric(
-          horizontal: AppWidgetSize.dimen_8,
-          vertical: AppWidgetSize.dimen_6,
+          horizontal: AppWidgetSize.dimen_6,
+          vertical: AppWidgetSize.dimen_5,
         ),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              width: 1,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
+        onTap: () {
+          // Handle cancel all tap
+        },
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            icon,
-            SizedBox(width: AppWidgetSize.dimen_4),
+            AppImages.closeCross(
+              context,
+              width: AppWidgetSize.dimen_12,
+              height: AppWidgetSize.dimen_12,
+              color: Theme.of(context).primaryColor,
+              isColor: true,
+            ),
+            SizedBox(width: AppWidgetSize.dimen_3),
             CustomTextWidget(
-              text,
+              'Cancel Orders',
               Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w500,
+                    fontSize: AppWidgetSize.fontSize12,
                   ) ?? TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w500,
+                    fontSize: AppWidgetSize.fontSize12,
                   ),
             ),
           ],
@@ -298,27 +330,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
           right: AppWidgetSize.dimen_4,
           left: AppWidgetSize.dimen_4,
         ),
-        child: Stack(
-          children: [
-            AppImages.filterIcon(
-              context,
-              width: AppWidgetSize.dimen_24,
-              height: AppWidgetSize.dimen_24,
-            ),
-            if (_isFilterSelected)
-              Positioned(
-                right: 0,
-                top: 0,
-                child: Container(
-                  width: AppWidgetSize.dimen_5,
-                  height: AppWidgetSize.dimen_5,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-          ],
+        child: AppUtils().buildFilterIcon(
+          context,
+          isSelected: _isFilterSelected,
         ),
       ),
     );
@@ -339,6 +353,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
           context,
           width: AppWidgetSize.dimen_24,
           height: AppWidgetSize.dimen_24,
+          color: Theme.of(context).primaryIconTheme.color,
+          isColor: true,
         ),
       ),
     );
@@ -415,13 +431,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Widget _buildOrderStatusWidget(BuildContext context) {
-    // Create labels with counts
-    final List<String> labelsWithCounts = [
-      '${_orderStatusFilter[0]} (${_orderStatusCountFilter[0]})',
-      '${_orderStatusFilter[1]} (${_orderStatusCountFilter[1]})',
-      '${_orderStatusFilter[2]} (${_orderStatusCountFilter[2]})',
-    ];
-
     return Padding(
       padding: EdgeInsets.only(
         top: AppWidgetSize.dimen_10,
@@ -440,11 +449,11 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     ValueListenableBuilder<int>(
                       valueListenable: _selectedOrderStatusIndex,
                       builder: (context, value, child) => CircularButtonToggleWidget(
-                        value: labelsWithCounts[value],
-                        toggleButtonlist: labelsWithCounts,
+                        value: _orderStatusFilter[value],
+                        buttonNoList: _orderStatusCountFilter,
+                        toggleButtonlist: _orderStatusFilter,
                         toggleButtonOnChanged: (String selectedLabel) {
-                          // Find the index of the selected label
-                          final index = labelsWithCounts.indexOf(selectedLabel);
+                          final index = _orderStatusFilter.indexOf(selectedLabel);
                           if (index != -1) {
                             _selectedOrderStatusIndex.value = index;
                           }
@@ -478,6 +487,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             child: AppImages.ordersSettings(
               context,
               color: Theme.of(context).primaryIconTheme.color,
+              isColor: true,
               width: 24.w,
               height: 24.w,
             ),

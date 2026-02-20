@@ -15,6 +15,8 @@ class LabelBorderWidget extends StatelessWidget {
   final Color? borderColor;
   final bool showNSETag;
   final bool isBold;
+  final Widget? child;
+  final VoidCallback? onTap;
 
   const LabelBorderWidget({
     Key? key,
@@ -30,6 +32,8 @@ class LabelBorderWidget extends StatelessWidget {
     this.borderColor,
     this.showNSETag = true,
     this.isBold = false,
+    this.child,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -38,7 +42,21 @@ class LabelBorderWidget extends StatelessWidget {
         Theme.of(context).inputDecorationTheme.fillColor ??
         Theme.of(context).dividerColor;
 
-    return Container(
+    Widget content = child ??
+        (showNSETag
+            ? Text(
+                text ?? '',
+                textAlign: textAlign ?? TextAlign.center,
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  color: textColor,
+                  fontSize: fontSize ?? AppWidgetSize.fontSize10,
+                  fontWeight: isBold ? FontWeight.w500 : null,
+                ),
+              )
+            : Container());
+
+    Widget container = Container(
       alignment: Alignment.center,
       margin: margin ?? EdgeInsets.all(3.w),
       padding: padding ?? EdgeInsets.only(left: 2.w, right: 2.w, top: 1.w, bottom: 1.w),
@@ -50,19 +68,17 @@ class LabelBorderWidget extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      child: showNSETag
-          ? Text(
-              text ?? '',
-              textAlign: textAlign ?? TextAlign.center,
-              style: TextStyle(
-                overflow: TextOverflow.ellipsis,
-                color: textColor,
-                fontSize: fontSize ?? AppWidgetSize.fontSize10,
-                fontWeight: isBold ? FontWeight.w500 : null,
-              ),
-            )
-          : Container(),
+      child: content,
     );
+
+    if (onTap != null) {
+      return GestureDetector(
+        onTap: onTap,
+        child: container,
+      );
+    }
+
+    return container;
   }
 }
 

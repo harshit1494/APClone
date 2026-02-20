@@ -6,6 +6,7 @@ import 'custom_text_widget.dart';
 
 class CircularButtonToggleWidget extends StatelessWidget {
   final String value;
+  final List<String>? buttonNoList;
   final List<String> toggleButtonlist;
   final Function(String) toggleButtonOnChanged;
   final EdgeInsets? marginEdgeInsets;
@@ -22,6 +23,7 @@ class CircularButtonToggleWidget extends StatelessWidget {
   const CircularButtonToggleWidget({
     Key? key,
     required this.value,
+    this.buttonNoList,
     required this.toggleButtonlist,
     required this.toggleButtonOnChanged,
     this.marginEdgeInsets,
@@ -76,15 +78,64 @@ class CircularButtonToggleWidget extends StatelessWidget {
                     )
                   : null,
             ),
-            child: CustomTextWidget(
-              item,
-              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: isActive ? activeTextColor : inactiveTextColor,
-                    fontSize: fontSize.w,
-                    fontWeight: FontWeight.w500,
-                  ) ??
-                  Theme.of(context).textTheme.bodyMedium!,
-            ),
+            child: buttonNoList == null
+                ? CustomTextWidget(
+                    item,
+                    Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: isActive ? activeTextColor : inactiveTextColor,
+                          fontSize: fontSize.w,
+                          fontWeight: FontWeight.w500,
+                        ) ??
+                        Theme.of(context).textTheme.bodyMedium!,
+                  )
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomTextWidget(
+                        item,
+                        Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: isActive ? activeTextColor : inactiveTextColor,
+                              fontSize: fontSize.w,
+                              fontWeight: FontWeight.w500,
+                            ) ??
+                            Theme.of(context).textTheme.bodyMedium!,
+                      ),
+                      if (index < buttonNoList!.length)
+                        Padding(
+                          padding: EdgeInsets.only(left: 4.w),
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 16.w,
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 0.1),
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(100.w),
+                              color: isActive
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).dividerColor,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 5.w, right: 5.w),
+                              child: CustomTextWidget(
+                                buttonNoList![index],
+                                Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      fontWeight: FontWeight.w500,
+                                      color: isActive
+                                          ? Colors.white
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .color,
+                                      fontSize: 12.w,
+                                    ) ??
+                                    Theme.of(context).textTheme.bodyMedium!,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
           ),
         );
       }),

@@ -6,7 +6,7 @@ Widget getRupeeSymbol(
   TextStyle textStyle,
 ) {
   return CustomTextWidget(
-    '\u20B9', // Unicode for Indian Rupee symbol
+    '₹', // Indian Rupee symbol
     textStyle,
   );
 }
