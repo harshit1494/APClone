@@ -50,7 +50,7 @@ class WatchlistListWidget extends StatelessWidget {
     return ListView.separated(
       physics: isFromWatchlistScreen
           ? const AlwaysScrollableScrollPhysics()
-          : const AlwaysScrollableScrollPhysics(),
+          : const NeverScrollableScrollPhysics(), // Disable scrolling when inside parent scroll
       primary: false,
       shrinkWrap: true,
       cacheExtent: 20,
@@ -62,7 +62,7 @@ class WatchlistListWidget extends StatelessWidget {
         }
         return _buildRowWidget(context, symbolList![index], index);
       },
-      padding: EdgeInsets.only(bottom: AppWidgetSize.dimen_14),
+      padding: EdgeInsets.zero, // Remove bottom padding to prevent extra scroll
       separatorBuilder: (_, __) => Divider(
         color: Theme.of(context).colorScheme.primary,
         thickness: 0.5,

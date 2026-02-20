@@ -6,6 +6,7 @@ class CustomTextWidget extends StatelessWidget {
   final TextOverflow textOverflow;
   final TextAlign textAlign;
   final EdgeInsetsGeometry? padding;
+  final int? maxLines;
 
   const CustomTextWidget(
     this.title,
@@ -14,6 +15,7 @@ class CustomTextWidget extends StatelessWidget {
     this.padding,
     this.textOverflow = TextOverflow.visible,
     this.textAlign = TextAlign.justify,
+    this.maxLines,
   }) : super(key: key);
 
   @override
@@ -25,6 +27,7 @@ class CustomTextWidget extends StatelessWidget {
         style: style,
         overflow: textOverflow,
         textAlign: textAlign,
+        maxLines: maxLines,
       ),
     );
   }

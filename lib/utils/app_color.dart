@@ -68,5 +68,13 @@ class AppColors {
   }
 
   static const Color negativeColor = Color(0xFFC25E54);
+  
+  static Color primaryColorLight(bool isLight) {
+    return isLight ? appPrimaryLightColor : appPrimaryLightColorDark;
+  }
+  
+  static Color primaryColor(bool isLight) {
+    return isLight ? appPrimaryColor : appPrimaryColorDark;
+  }
 }
 

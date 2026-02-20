@@ -7,6 +7,7 @@ class AppWidgetSize {
   static double dimen_3 = 3.w;
   static double dimen_4 = 4.w;
   static double dimen_5 = 5.w;
+  static double dimen_6 = 6.w;
   static double dimen_8 = 8.w;
   static double dimen_10 = 10.w;
   static double dimen_12 = 12.w;
@@ -16,13 +17,19 @@ class AppWidgetSize {
   static double dimen_18 = 18.w;
   static double dimen_20 = 20.w;
   static double dimen_22 = 22.w;
+  static double dimen_24 = 24.w;
   static double dimen_25 = 25.w;
   static double dimen_30 = 30.w;
   static double dimen_32 = 32.w;
   static double dimen_35 = 35.w;
+  static double dimen_38 = 38.w;
+  static double dimen_40 = 40.w;
+  static double dimen_50 = 50.w;
   static double dimen_54 = 54.w;
   static double dimen_60 = 60.w;
+  static double dimen_66 = 66.w;
   static double dimen_70 = 70.w;
+  static double dimen_80 = 80.w;
   static double dimen_7 = 7.w;
   static double dimen_240 = 240.w;
   static double dimen_280 = 280.w;
@@ -33,9 +40,12 @@ class AppWidgetSize {
   static double overlineSize = 16.w;
   static double captionSize = 14.w;
   static double fontSize10 = 10.w;
+  static double fontSize12 = 12.w;
   static double fontSize14 = 14.w;
+  static double fontSize16 = 16.w;
   static double fontSize18 = 18.w;
   static double fontSize22 = 22.w;
+  static double fontSize28 = 28.w;
   static double headline1Size = 38.w;
   static double headline2Size = 28.w;
   static double headline3Size = 22.w;
@@ -58,5 +68,9 @@ class AppWidgetSize {
   
   static double screenWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
+  }
+  
+  static double screenHeight(BuildContext context, {double dividedBy = 1}) {
+    return MediaQuery.of(context).size.height / dividedBy;
   }
 }

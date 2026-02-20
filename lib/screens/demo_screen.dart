@@ -5,6 +5,7 @@ import '../utils/app_widget_size.dart';
 import '../utils/app_color.dart';
 import '../widgets/custom_text_widget.dart';
 import 'watchlist_screen.dart';
+import 'trades_screen.dart';
 
 class DemoScreen extends StatefulWidget {
   final int initialIndex;
@@ -93,12 +94,7 @@ class _DemoScreenState extends State<DemoScreen> {
       case 0:
         return const WatchlistScreen();
       case 1:
-        return Center(
-          child: CustomTextWidget(
-            'Trades Screen',
-            Theme.of(context).textTheme.displayMedium!,
-          ),
-        );
+        return const TradesScreen();
       case 2:
         return Center(
           child: CustomTextWidget(

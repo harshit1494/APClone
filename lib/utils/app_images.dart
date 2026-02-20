@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppImages {
@@ -318,6 +319,190 @@ class AppImages {
       color: isColor ? color : null,
       width: width ?? 25,
       height: height ?? 25,
+    );
+  }
+
+  static Widget downArrow(
+    BuildContext context, {
+    bool isColor = false,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/down_arrow.svg',
+      color: isColor ? color : null,
+      width: width ?? 25,
+      height: height ?? 25,
+    );
+  }
+
+  static Widget closeIcon(
+    BuildContext context, {
+    bool isColor = false,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/close_icon.svg',
+      color: isColor ? color : null,
+      width: width ?? 25,
+      height: height ?? 25,
+    );
+  }
+
+  static Widget greenTickIcon(
+    BuildContext context, {
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/green_tick.svg',
+      width: width ?? 22,
+      height: height ?? 22,
+    );
+  }
+
+  static Widget scannersFilterIcon(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+    Color? color,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/sliders.svg',
+      color: isColor == true ? color : null,
+      width: width ?? 24,
+      height: height ?? 24,
+    );
+  }
+
+  static Widget sortUp(
+    BuildContext context, {
+    bool? isColor = false,
+    double? width,
+    double? height,
+    Color? color,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/sort_up.svg',
+      color: isColor == true ? color : null,
+      width: width ?? 12,
+      height: height ?? 12,
+    );
+  }
+
+  static Widget sortDown(
+    BuildContext context, {
+    bool? isColor = false,
+    double? width,
+    double? height,
+    Color? color,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/sort_down.svg',
+      color: isColor == true ? color : null,
+      width: width ?? 12,
+      height: height ?? 12,
+    );
+  }
+
+  // Orders Screen Icons
+  static Widget tradeHistory(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.history,
+      color: Theme.of(context).primaryIconTheme.color,
+      size: width ?? 15,
+    );
+  }
+
+  static Widget ordersSettings(
+    BuildContext context, {
+    bool isColor = false,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.settings,
+      color: color ?? Theme.of(context).primaryIconTheme.color,
+      size: width ?? 24,
+    );
+  }
+
+  static Widget informationIcon(
+    BuildContext context, {
+    bool isColor = false,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.info_outline,
+      color: color ?? Theme.of(context).primaryIconTheme.color,
+      size: width ?? 30,
+    );
+  }
+
+  static Widget closeCross(
+    BuildContext context, {
+    bool? isColor,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.close,
+      color: color ?? Theme.of(context).primaryColor,
+      size: width ?? 15,
+    );
+  }
+
+  static Widget deleteIcon(
+    BuildContext context, {
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.close,
+      color: color ?? Theme.of(context).primaryIconTheme.color,
+      size: width ?? 25,
+    );
+  }
+
+  static Widget searchIcon(
+    BuildContext context, {
+    bool? isColor,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.search,
+      color: color ?? Theme.of(context).primaryIconTheme.color,
+      size: width ?? 24,
+    );
+  }
+
+  static Widget filterIcon(
+    BuildContext context, {
+    bool? isColor,
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return Icon(
+      Icons.filter_list,
+      color: color ?? Theme.of(context).primaryIconTheme.color,
+      size: width ?? 24,
     );
   }
 }

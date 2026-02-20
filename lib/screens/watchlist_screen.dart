@@ -7,6 +7,8 @@ import '../widgets/toggle_circular_tabs_widget.dart';
 import '../widgets/custom_text_widget.dart';
 import '../models/symbols_model.dart';
 import 'watchlist_list_widget.dart';
+import 'markets_screen.dart';
+import 'scanners_screen.dart';
 import '../utils/app_images.dart';
 
 class WatchlistScreen extends StatefulWidget {
@@ -302,21 +304,7 @@ class _WatchlistScreenState extends State<WatchlistScreen>
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _buildBottomAppBarWidget('Markets', 0),
-          Expanded(
-            child: Center(
-              child: CustomTextWidget(
-                'Markets Screen',
-                Theme.of(context).textTheme.displayMedium!,
-              ),
-            ),
-          ),
-        ],
-      ),
+      child: const MarketsScreen(),
     );
   }
 
@@ -324,21 +312,7 @@ class _WatchlistScreenState extends State<WatchlistScreen>
     return Container(
       color: Theme.of(context).scaffoldBackgroundColor,
       width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _buildBottomAppBarWidget('Scanners', 0),
-          Expanded(
-            child: Center(
-              child: CustomTextWidget(
-                'Scanners Screen',
-                Theme.of(context).textTheme.displayMedium!,
-              ),
-            ),
-          ),
-        ],
-      ),
+      child: const ScannersScreen(),
     );
   }
 
