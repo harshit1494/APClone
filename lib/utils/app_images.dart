@@ -845,5 +845,194 @@ class AppImages {
   static AssetImage researchInfo3() {
     return const AssetImage('assets/images/researchInfo3.png');
   }
+
+  // My Account Icons
+  static Widget bankAccount(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/bank_accounts.svg'
+          : 'assets/images/bank_accounts_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget ipoIcon(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/ipo_icon.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget reports(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/reports.svg'
+          : 'assets/images/reports_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget megaPhone(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+    Color? color,
+  }) {
+    return SvgPicture.asset(
+      'assets/images/megaphone.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+      color: color,
+    );
+  }
+
+  static Widget alertMyAccount(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/alert_myaccount.svg'
+          : 'assets/images/alert_myaccount_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget helpSupport(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/help_support.svg'
+          : 'assets/images/help_support_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget needHelp(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/need_help.svg'
+          : 'assets/images/need_help_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget switchAcc(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/switch account.svg'
+          : 'assets/images/switch_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget logout(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/logout.svg'
+          : 'assets/images/logout_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget calculator(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/calculator.svg'
+          : 'assets/images/calculator_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget marginPledge(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/margin_pledge.svg'
+          : 'assets/images/margin_pledge_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
+
+  static Widget referEarn(
+    BuildContext context, {
+    bool? isColor,
+    double? width,
+    double? height,
+  }) {
+    final isLight = Theme.of(context).brightness == Brightness.light;
+    return SvgPicture.asset(
+      isLight
+          ? 'assets/images/refer_earn.svg'
+          : 'assets/images/refer_earn_dark.svg',
+      width: width ?? 24.w,
+      height: height ?? 24.w,
+    );
+  }
 }
 

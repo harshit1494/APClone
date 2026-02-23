@@ -39,12 +39,9 @@ class OrderRowWidget extends StatelessWidget {
                 color: Theme.of(context).scaffoldBackgroundColor,
               )
             : null,
-        width: AppWidgetSize.fullWidth(context) - 10,
         padding: EdgeInsets.only(
           top: AppWidgetSize.dimen_10,
           bottom: AppWidgetSize.dimen_10,
-          left: AppWidgetSize.dimen_24,
-          right: AppWidgetSize.dimen_24,
         ),
         child: _buildRowContentWidget(context),
       ),

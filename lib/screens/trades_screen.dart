@@ -9,6 +9,7 @@ import 'orders_main_screen.dart';
 import 'positions_screen.dart';
 import 'holdings_screen.dart';
 import 'research_reinvented_screen.dart';
+import 'my_account_screen.dart';
 
 class TradesScreen extends StatefulWidget {
   const TradesScreen({Key? key}) : super(key: key);
@@ -67,9 +68,9 @@ class _TradesScreenState extends State<TradesScreen>
               automaticallyImplyLeading: false,
               centerTitle: false,
               backgroundColor: Colors.transparent,
-              toolbarHeight: AppWidgetSize.dimen_66,
+              toolbarHeight: 66.h,
               title: SizedBox(
-                height: 100.w,
+                height: 66.h,
                 child: _buildTopAppBarContent(),
               ),
             ),
@@ -93,7 +94,7 @@ class _TradesScreenState extends State<TradesScreen>
 
   Widget _buildTopAppBarContent() {
     return Container(
-      height: AppWidgetSize.fullWidth(context),
+      height: double.infinity,
       padding: EdgeInsets.only(left: 10.w, right: 12.w),
       child: Row(
         children: [
@@ -161,32 +162,40 @@ class _TradesScreenState extends State<TradesScreen>
   }
 
   Widget _buildProfileIcon() {
-    return GestureDetector(
-      onTap: () {
-        // Handle profile icon tap
-      },
-      child: Container(
-        width: AppWidgetSize.dimen_32,
-        height: AppWidgetSize.dimen_32,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.positiveColor(
-            Theme.of(context).brightness == Brightness.light,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const MyAccountScreen(),
+            ),
+          );
+        },
+        borderRadius: BorderRadius.circular(AppWidgetSize.dimen_32),
+        child: Container(
+          width: AppWidgetSize.dimen_32,
+          height: AppWidgetSize.dimen_32,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.positiveColor(
+              Theme.of(context).brightness == Brightness.light,
+            ),
           ),
-        ),
-        child: Center(
-          child: CustomTextWidget(
-            'HC',
-            Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.w,
-                ) ??
-                TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12.w,
-                ),
+          child: Center(
+            child: CustomTextWidget(
+              'HC',
+              Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.w,
+                  ) ??
+                  TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.w,
+                  ),
+            ),
           ),
         ),
       ),

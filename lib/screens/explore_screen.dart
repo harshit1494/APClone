@@ -69,7 +69,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   Widget _buildTopBar(BuildContext context) {
     return Container(
-      height: 90.w,
+      height: 90.h,
       padding: EdgeInsets.only(left: 16.w, right: 16.w),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
@@ -81,7 +81,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           SizedBox(width: 10.w),
           Expanded(
             child: Container(
-              height: 45.w,
+              height: 45.h,
               padding: EdgeInsets.only(left: 10.w, right: 10.w),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,

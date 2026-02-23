@@ -7,7 +7,6 @@ import '../widgets/acml_text_field.dart';
 import '../widgets/custom_text_widget.dart';
 import '../widgets/gradient_button_widget.dart';
 import 'demo_screen.dart';
-import 'watchlist_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   final String? userName;
@@ -72,7 +71,7 @@ class LoginScreenState extends State<LoginScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: proceedButton(),
       body: Padding(
-        padding: EdgeInsets.only(bottom: 70.0.w),
+        padding: EdgeInsets.only(bottom: 70.0.h),
         child: _buildBody(isLight),
       ),
       bottomNavigationBar: SafeArea(
@@ -144,6 +143,9 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget proceedButton() {
+    final buttonWidth =
+        (AppWidgetSize.screenWidth(context) - 56.w).clamp(240.w, 360.w).toDouble();
+
     return Opacity(
       opacity: _userIdController.text.isEmpty ||
               (isMobile && _userIdController.text.length < 10) ||
@@ -155,7 +157,7 @@ class LoginScreenState extends State<LoginScreen> {
           // No API implementation - just UI
         },
         bottom: 0,
-        width: AppWidgetSize.dimen_280,
+        width: buttonWidth,
         key: const Key('loginSubmitButton'),
         context: context,
         title: 'Proceed',

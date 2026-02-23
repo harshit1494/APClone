@@ -6,6 +6,7 @@ import '../utils/app_images.dart';
 import '../widgets/custom_text_widget.dart';
 import '../widgets/circular_button_toggle_widget.dart';
 import '../widgets/info_bottomsheet.dart';
+import '../widgets/rupee_symbol_widget.dart';
 
 class ScannersScreen extends StatefulWidget {
   const ScannersScreen({Key? key}) : super(key: key);
@@ -227,7 +228,7 @@ class _ScannersScreenState extends State<ScannersScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: AppWidgetSize.dimen_16),
               child: Container(
-                height: 48.w,
+                height: 48.h,
                 child: Row(
                   children: [
                     // Custom Scanners dropdown (only for Custom Scanners tab) - extreme left
@@ -283,8 +284,8 @@ class _ScannersScreenState extends State<ScannersScreen> {
                 padding: EdgeInsets.only(
                   left: AppWidgetSize.dimen_16,
                   right: AppWidgetSize.dimen_16,
-                  top: AppWidgetSize.dimen_4,
-                  bottom: AppWidgetSize.dimen_8,
+                  top: 4.h,
+                  bottom: 8.h,
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -587,11 +588,11 @@ class _ScannersScreenState extends State<ScannersScreen> {
     }
     
     if (isNegative || chngValue < 0) {
-      return '₹-$formattedChng';
+      return '-$formattedChng';
     } else if (chngValue > 0) {
-      return '₹+$formattedChng';
+      return '+$formattedChng';
     } else {
-      return '₹0.00';
+      return '0.00';
     }
   }
 
@@ -729,6 +730,10 @@ class _ScannersScreenState extends State<ScannersScreen> {
   }
 
   Widget _buildTableHeader() {
+    final screenWidth = AppWidgetSize.screenWidth(context);
+    final adxColWidth = (screenWidth * 0.17).clamp(52.0, 72.0);
+    final smaColWidth = (screenWidth * 0.22).clamp(68.0, 96.0);
+
     return Row(
       children: [
         Expanded(
@@ -736,13 +741,13 @@ class _ScannersScreenState extends State<ScannersScreen> {
         ),
         SizedBox(width: AppWidgetSize.dimen_8),
         Container(
-          width: AppWidgetSize.dimen_60,
+          width: adxColWidth,
           alignment: Alignment.centerRight,
           child: _buildHeaderItem(_headerList[1]), // ADX
         ),
         SizedBox(width: AppWidgetSize.dimen_8),
         Container(
-          width: AppWidgetSize.dimen_80,
+          width: smaColWidth,
           alignment: Alignment.centerRight,
           child: _buildHeaderItem(_headerList[2]), // 5 SMA
         ),
@@ -820,11 +825,14 @@ class _ScannersScreenState extends State<ScannersScreen> {
     final color = isPositive
         ? AppColors.positiveColor(isLight)
         : AppColors.negativeColor;
+    final screenWidth = AppWidgetSize.screenWidth(context);
+    final adxColWidth = (screenWidth * 0.17).clamp(52.0, 72.0);
+    final smaColWidth = (screenWidth * 0.22).clamp(68.0, 96.0);
 
     return Column(
       children: [
         Container(
-          height: 80.w,
+          height: 80.h,
           padding: EdgeInsets.only(
             left: AppWidgetSize.dimen_16,
             right: AppWidgetSize.dimen_16,
@@ -894,6 +902,15 @@ class _ScannersScreenState extends State<ScannersScreen> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          getRupeeSymbol(
+                            context,
+                            Theme.of(context).primaryTextTheme.labelSmall!.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14.w,
+                                  color: color,
+                                ),
+                          ),
+                          SizedBox(width: AppWidgetSize.dimen_2),
                           CustomTextWidget(
                             _formatChange(scannerData['chng'] ?? '0'),
                             Theme.of(context).primaryTextTheme.labelSmall!.copyWith(
@@ -923,7 +940,7 @@ class _ScannersScreenState extends State<ScannersScreen> {
               SizedBox(width: AppWidgetSize.dimen_8),
               // ADX Column
               Container(
-                width: AppWidgetSize.dimen_60,
+                width: adxColWidth,
                 alignment: Alignment.centerRight,
                 child: CustomTextWidget(
                   scannerData['ADX25'] ?? '--',
@@ -936,7 +953,7 @@ class _ScannersScreenState extends State<ScannersScreen> {
               SizedBox(width: AppWidgetSize.dimen_8),
               // 5 SMA Column
               Container(
-                width: AppWidgetSize.dimen_80,
+                width: smaColWidth,
                 alignment: Alignment.centerRight,
                 child: CustomTextWidget(
                   scannerData['SMA5'] ?? '--',
@@ -967,9 +984,8 @@ class _StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   double get minExtent {
-    // Calculate based on: top padding (4.w) + toggle height (38.w) + bottom padding (8.w) = 50.w
-    // But add a bit more to account for any spacing
-    return 50.w;
+    // Keep header extent stable across web/mobile; width-based scaling can break sliver geometry.
+    return 56.h;
   }
 
   @override

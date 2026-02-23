@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/app_images.dart';
-import '../utils/app_widget_size.dart';
 import '../utils/app_color.dart';
 import 'watchlist_screen.dart';
 import 'trades_screen.dart';
 import 'dashboard_screen.dart';
 import 'funds_screen.dart';
 import 'explore_screen.dart';
-import 'login_screen.dart';
 
 class DemoScreen extends StatefulWidget {
   final int initialIndex;
@@ -91,15 +89,6 @@ class _DemoScreenState extends State<DemoScreen> {
       _selectedIndex = index;
     });
   }
-
-  void _exitDemoToLogin() {
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(
-        builder: (_) => const LoginScreen(),
-      ),
-      (route) => false,
-    );
-  }
   
   Widget _getBodyContent() {
     switch (_selectedIndex) {
@@ -125,75 +114,14 @@ class _DemoScreenState extends State<DemoScreen> {
     return Scaffold(
       appBar: null,
       body: _menuItems != null
-          ? Column(
-              children: [
-                _buildExitDemoStrip(isLight),
-                Expanded(child: _getBodyContent()),
-              ],
+          ? SafeArea(
+              bottom: false,
+              child: _getBodyContent(),
             )
           : const Center(child: CircularProgressIndicator()),
       bottomNavigationBar: _menuItems != null
           ? _buildBottomNavigationBar(isLight)
           : null,
-    );
-  }
-
-  Widget _buildExitDemoStrip(bool isLight) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.only(top: 6.w, bottom: 6.w, left: 12.w),
-      color: isLight
-          ? Theme.of(context).scaffoldBackgroundColor
-          : Theme.of(context).colorScheme.surface,
-      child: SafeArea(
-        bottom: false,
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: GestureDetector(
-            onTap: _exitDemoToLogin,
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 14.w,
-                vertical: 7.w,
-              ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).snackBarTheme.backgroundColor,
-                borderRadius: BorderRadius.circular(20.w),
-                border: Border.all(
-                  color: AppColors.positiveColor(isLight).withOpacity(0.65),
-                  width: 1.2,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.positiveColor(isLight).withOpacity(0.14),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.logout_rounded,
-                    size: 14.w,
-                    color: AppColors.positiveColor(isLight),
-                  ),
-                  SizedBox(width: 5.w),
-                  Text(
-                    'Exit Demo',
-                    style: Theme.of(context).primaryTextTheme.bodySmall!.copyWith(
-                          color: AppColors.positiveColor(isLight),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12.w,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 
@@ -216,10 +144,13 @@ class _DemoScreenState extends State<DemoScreen> {
       color: isLight
           ? Theme.of(context).scaffoldBackgroundColor
           : Theme.of(context).colorScheme.surface,
-      padding: const EdgeInsets.only(right: 10),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: items,
+      padding: EdgeInsets.zero,
+      child: SafeArea(
+        top: false,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: items,
+        ),
       ),
     );
   }
@@ -231,31 +162,42 @@ class _DemoScreenState extends State<DemoScreen> {
     required bool isLight,
   }) {
     final isSelected = _selectedIndex == index;
+    final tabItemHeight = (64.h).clamp(58.0, 74.0).toDouble();
+    final iconSize = (24.w).clamp(20.0, 26.0).toDouble();
     
     return Expanded(
       child: InkWell(
         onTap: () => onPressed(index),
         child: SizedBox(
-          height: 65.w,
+          height: tabItemHeight,
           child: Material(
             type: MaterialType.transparency,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
-                  width: 26.w,
-                  height: 26.w,
+                  width: iconSize,
+                  height: iconSize,
                   child: isSelected ? item['activeIcon'] : item['icon'],
                 ),
-                Text(
-                  item['title'],
-                  key: Key('BOTTOM_NAVIGATION_MENU_$index'),
-                  style: isSelected
-                      ? Theme.of(context).primaryTextTheme.bodySmall!.copyWith(
-                          color: AppColors.positiveColor(isLight),
-                        )
-                      : Theme.of(context).primaryTextTheme.bodySmall!,
+                SizedBox(height: 3.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      item['title'],
+                      key: Key('BOTTOM_NAVIGATION_MENU_$index'),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: isSelected
+                          ? Theme.of(context).primaryTextTheme.bodySmall!.copyWith(
+                              color: AppColors.positiveColor(isLight),
+                            )
+                          : Theme.of(context).primaryTextTheme.bodySmall!,
+                    ),
+                  ),
                 ),
               ],
             ),

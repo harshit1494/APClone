@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'custom_text_widget.dart';
 
 Widget getRupeeSymbol(
   BuildContext context,
   TextStyle textStyle,
 ) {
-  return CustomTextWidget(
-    '₹', // Indian Rupee symbol
-    textStyle,
+  return Text(
+    '\u20B9',
+    style: textStyle.copyWith(
+      // Match Funds screen implementation for consistent web/app rendering.
+      fontFamily: 'Arial',
+    ),
   );
 }
 

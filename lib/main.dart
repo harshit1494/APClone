@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'screens/login_screen.dart';
 
@@ -47,6 +46,17 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Arihant App',
           debugShowCheckedModeBanner: false,
+          builder: (context, appChild) {
+            final mediaQuery = MediaQuery.of(context);
+            final normalizedMediaQuery = mediaQuery.copyWith(
+              // Keep text scale stable across Android devices so layout matches iOS intent.
+              textScaler: const TextScaler.linear(1.0),
+            );
+            return MediaQuery(
+              data: normalizedMediaQuery,
+              child: appChild ?? child ?? const SizedBox.shrink(),
+            );
+          },
           theme: _buildLightTheme(),
           darkTheme: _buildDarkTheme(),
           themeMode: ThemeMode.light,

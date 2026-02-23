@@ -57,7 +57,7 @@ class _FundsScreenState extends State<FundsScreen>
       children: [
         // Top App Bar
         Container(
-          height: AppWidgetSize.dimen_66,
+          height: 66.h,
           decoration: BoxDecoration(
             color: Theme.of(context).snackBarTheme.backgroundColor,
             border: Border(
@@ -71,8 +71,8 @@ class _FundsScreenState extends State<FundsScreen>
                 padding: EdgeInsets.only(
                   left: 16.w,
                   right: 16.w,
-                  top: 8.w,
-                  bottom: 8.w,
+                  top: 8.h,
+                  bottom: 8.h,
                 ),
                 child: _buildEquityCommodityTabBar(),
               ),

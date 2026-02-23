@@ -11,6 +11,7 @@ import 'markets_screen.dart';
 import 'scanners_screen.dart';
 import 'research_reinvented_screen.dart';
 import '../utils/app_images.dart';
+import 'my_account_screen.dart';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({Key? key}) : super(key: key);
@@ -153,7 +154,7 @@ class _WatchlistScreenState extends State<WatchlistScreen>
             sliver: SliverAppBar(
               titleSpacing: 0,
               automaticallyImplyLeading: false,
-              expandedHeight: 66.w,
+              expandedHeight: 66.h,
               pinned: true,
               centerTitle: false,
               floating: false,
@@ -190,7 +191,7 @@ class _WatchlistScreenState extends State<WatchlistScreen>
 
   Widget _buildTopAppBarContent() {
     return Container(
-      height: AppWidgetSize.fullWidth(context),
+      height: double.infinity,
       padding: EdgeInsets.only(left: 10.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -247,21 +248,34 @@ class _WatchlistScreenState extends State<WatchlistScreen>
                 ),
                 SizedBox(width: 12.w),
                 // Profile icon with HC text
-                Container(
-                  width: AppWidgetSize.dimen_32,
-                  height: AppWidgetSize.dimen_32,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: Center(
-                    child: CustomTextWidget(
-                      'HC',
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: AppWidgetSize.fontSize14,
-                          ),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const MyAccountScreen(),
+                        ),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(AppWidgetSize.dimen_32),
+                    child: Container(
+                      width: AppWidgetSize.dimen_32,
+                      height: AppWidgetSize.dimen_32,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      child: Center(
+                        child: CustomTextWidget(
+                          'HC',
+                          Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: AppWidgetSize.fontSize14,
+                              ),
+                        ),
+                      ),
                     ),
                   ),
                 ),

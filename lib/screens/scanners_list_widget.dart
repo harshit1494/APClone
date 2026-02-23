@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/app_widget_size.dart';
 import '../utils/app_color.dart';
 import '../widgets/custom_text_widget.dart';
-import '../widgets/fandotag.dart';
+import '../widgets/rupee_symbol_widget.dart';
 import '../models/scanner_model.dart';
-import '../models/symbols_model.dart';
 
 class ScannersListWidget extends StatelessWidget {
   final List<Scanner>? scannerList;
@@ -188,17 +187,22 @@ class ScannersListWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CustomTextWidget(
-                          scannerItem.ltp ?? '0.00',
-                          Theme.of(context)
-                              .primaryTextTheme
-                              .labelSmall!
-                              .copyWith(
+                        getRupeeSymbol(
+                          context,
+                          Theme.of(context).primaryTextTheme.labelSmall!.copyWith(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14.w,
                                 color: color,
                               ),
-                          isRupee: true,
+                        ),
+                        SizedBox(width: AppWidgetSize.dimen_2),
+                        CustomTextWidget(
+                          scannerItem.ltp ?? '0.00',
+                          Theme.of(context).primaryTextTheme.labelSmall!.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14.w,
+                                color: color,
+                              ),
                         ),
                         SizedBox(width: AppWidgetSize.dimen_4),
                         CustomTextWidget(

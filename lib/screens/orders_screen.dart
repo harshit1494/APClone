@@ -184,19 +184,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: const ClampingScrollPhysics(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildTradeHistory(context),
-                if (_hasPendingOrders()) _buildCancelAll(context),
-              ],
-            ),
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildTradeHistory(context),
+            if (_hasPendingOrders()) _buildCancelAll(context),
+          ],
         ),
         IntrinsicHeight(
           child: Row(
@@ -339,7 +333,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Widget _buildSearch(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         setState(() {
           _isSearchSelected = true;
@@ -351,8 +345,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         child: AppImages.searchIcon(
           context,
-          width: AppWidgetSize.dimen_24,
-          height: AppWidgetSize.dimen_24,
+          width: AppWidgetSize.dimen_25,
+          height: AppWidgetSize.dimen_25,
           color: Theme.of(context).primaryIconTheme.color,
           isColor: true,
         ),
@@ -361,71 +355,76 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Widget _buildSearchTextBox(BuildContext context) {
-    return Container(
-      height: AppWidgetSize.dimen_40,
-      decoration: BoxDecoration(
-        color: Theme.of(context).inputDecorationTheme.fillColor,
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          color: Theme.of(context).dividerColor,
-        ),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: AppWidgetSize.dimen_10),
-      child: Stack(
-        children: [
-          TextField(
-            controller: _searchController,
-            cursorColor: Theme.of(context).iconTheme.color,
-            enableInteractiveSelection: true,
-            autocorrect: false,
-            enabled: true,
-            textCapitalization: TextCapitalization.characters,
-            onChanged: (String text) {
-              setState(() {});
-            },
-            textInputAction: TextInputAction.done,
-            style: Theme.of(context).primaryTextTheme.labelLarge!.copyWith(
-              fontWeight: FontWeight.w500,
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
-              contentPadding: EdgeInsets.only(
-                top: AppWidgetSize.dimen_10,
-                bottom: AppWidgetSize.dimen_7,
-                right: AppWidgetSize.dimen_10,
-              ),
-              hintText: 'Search symbol',
-              hintStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
-                color: Theme.of(context).dialogTheme.backgroundColor?.withAlpha(100),
-              ),
-              counterText: '',
-            ),
-            maxLength: 25,
+    return Padding(
+      padding: EdgeInsets.only(bottom: AppWidgetSize.dimen_20),
+      child: Container(
+        height: AppWidgetSize.dimen_45,
+        alignment: Alignment.centerLeft,
+        decoration: BoxDecoration(
+          color: Theme.of(context).inputDecorationTheme.fillColor,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            color: Theme.of(context).dividerColor,
           ),
-          Positioned(
-            right: 0,
-            top: AppWidgetSize.dimen_12,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isSearchSelected = false;
-                  _searchController.text = '';
-                });
+        ),
+        padding: EdgeInsets.symmetric(horizontal: AppWidgetSize.dimen_10),
+        child: Stack(
+          children: [
+            TextField(
+              controller: _searchController,
+              cursorColor: Theme.of(context).iconTheme.color,
+              enableInteractiveSelection: true,
+              autocorrect: false,
+              enabled: true,
+              textCapitalization: TextCapitalization.characters,
+              onChanged: (String text) {
+                setState(() {});
               },
-              child: Center(
-                child: AppImages.deleteIcon(
-                  context,
-                  width: AppWidgetSize.dimen_25,
-                  height: AppWidgetSize.dimen_25,
+              textInputAction: TextInputAction.done,
+              style: Theme.of(context).primaryTextTheme.labelLarge!.copyWith(
+                fontWeight: FontWeight.w500,
+              ),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.only(
+                  top: AppWidgetSize.dimen_10,
+                  bottom: AppWidgetSize.dimen_7,
+                  right: AppWidgetSize.dimen_10,
+                ),
+                hintText: 'Search symbol',
+                hintStyle: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: Theme.of(context).dialogTheme.backgroundColor?.withAlpha(100),
+                ),
+                counterText: '',
+              ),
+              maxLength: 25,
+            ),
+            Positioned(
+              right: 0,
+              top: AppWidgetSize.dimen_12,
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isSearchSelected = false;
+                    _searchController.text = '';
+                  });
+                },
+                child: Center(
+                  child: AppImages.deleteIcon(
+                    context,
+                    width: AppWidgetSize.dimen_25,
+                    height: AppWidgetSize.dimen_25,
+                    color: Theme.of(context).primaryIconTheme.color,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

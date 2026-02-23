@@ -9,6 +9,7 @@ import '../widgets/label_border_text_widget.dart';
 import '../widgets/circular_button_toggle_widget.dart';
 import '../widgets/gradient_button_widget.dart';
 import 'research_reinvented_screen.dart';
+import 'my_account_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -83,7 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       children: [
         // Top AppBar Content
         Container(
-          height: AppWidgetSize.dimen_66,
+          height: 66.h,
           decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
             boxShadow: [
@@ -95,7 +96,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ],
           ),
           child: SizedBox(
-            height: 100.w,
+            height: 66.h,
             child: _buildTopAppBarContent(),
           ),
         ),
@@ -149,7 +150,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final isLight = Theme.of(context).brightness == Brightness.light;
     
     return Container(
-      height: AppWidgetSize.fullWidth(context),
+      height: double.infinity,
       padding: EdgeInsets.only(left: 16.w, right: 19.w),
       child: Row(
         children: [
@@ -235,30 +236,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 SizedBox(width: 12.w),
                 // Profile icon
-                GestureDetector(
-                  onTap: () {
-                    // Handle profile tap
-                  },
-                  child: Container(
-                    width: AppWidgetSize.dimen_32,
-                    height: AppWidgetSize.dimen_32,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.positiveColor(isLight),
-                    ),
-                    child: Center(
-                      child: CustomTextWidget(
-                        'HC',
-                        Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12.w,
-                            ) ??
-                            TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12.w,
-                            ),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const MyAccountScreen(),
+                        ),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(AppWidgetSize.dimen_32),
+                    child: Container(
+                      width: AppWidgetSize.dimen_32,
+                      height: AppWidgetSize.dimen_32,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.positiveColor(isLight),
+                      ),
+                      child: Center(
+                        child: CustomTextWidget(
+                          'HC',
+                          Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.w,
+                              ) ??
+                              TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.w,
+                              ),
+                        ),
                       ),
                     ),
                   ),
